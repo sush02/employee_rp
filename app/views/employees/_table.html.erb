@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<table class="table">
+  <thead class="thead-light" style="text-align: center">
+    <tr class="table-active">
+      <th scope="col">Full Name</th>
+      <th scope="col">Designation</th>
+      <th scope="col">Department</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody style="text-align: center">
+    <% @employees.each do |employee| %>
+      <tr>
+          <td>
+            <%= employee.first_name.capitalize + " " + employee.last_name.capitalize %>
+          </td>
+          <td>
+            <%= employee&.designation.capitalize %>
+          </td>
+          <td>
+            <%= employee.department&.name&.capitalize %>
+          </td>
+          <td>
+            <%= link_to '<i class="bi bi-pencil-fill"></i>'.html_safe, edit_employee_path(employee.id) %>
+          </td>
+        </tr>
+      <%end%>
+  </tbody>
+</table>

@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<%= form_with(model: employee, class: "contents") do |form| %>
+ <% if employee.errors.any? %>
+   <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3"> 
+     <ul>
+       <% employee.errors.each do |error| %> 
+       <li class="list-group-item list-group-item-danger"><%= error.full_message %></li>
+       <% end %> 
+     </ul>
+   </div>
+  <% end %>
+  <br/>
+  <div class="container-fluid page-container bg-light">
+    <br/>
+    <div class ="container">
+    <div class="row">
+      <div class="col">
+        <%= form.label :first_name, style: "display: block" %><br/>
+      </div>
+      <div class="col">
+        <%= form.label :last_name, style: "display: block" %><br/>
+      </div>
+      <div class="col">
+        <%= form.label :email, style: "display: block" %><br/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        
+        <%= form.text_field :first_name , class:"form-control"%>
+      </div>
+      <div class="col">
+        <%= form.text_field :last_name, class:"form-control" %>
+      </div>
+      <div class="col">
+        <%= form.text_field :email, class:"form-control" %>
+      </div>
+    </div>
+    <br/><br/>
+    <div class="row">
+      <div class="col">
+        <%= form.label :designation, style: "display: block" %>
+      </div>
+      <div class="col">
+        <%= form.label :department, style: "display: block" %>
+      </div>
+    </div>
+    <div class ="row">
+      <div class="col">
+        <%= form.text_field :designation , class:"form-control"%>
+      </div>
+      <div class="col">
+        <%= form.select :department_id, options_for_select(Department.pluck(:name, :id), 
+          form.object&.department_id), {prompt: 'Select Department'}, { class: 'chosen-select form-control form-control-sm'} %>
+      </div>
+    </div>
+    </div>
+    <br/>
+    <div class= "row">
+      <div class="col">
+        <%= form.submit class: "button-back" , style: "background-color: #2ea44f; color: #FFFFFF"%>
+        </div>
+    </div>
+  <% end %>
+

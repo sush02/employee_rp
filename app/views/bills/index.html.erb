@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<h3>List of Submitted Bills</h3>
+<br/>
+<p>Total Submitted: <b><%= @bills.sum(:amount).round(2) %></b>
+<br/>
+
+<div id="bills">
+    <%= render "table", bill: @bills %>
+</div>

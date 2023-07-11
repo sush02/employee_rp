@@ -1,0 +1,11 @@
+
+<%= render @employee%>
+
+<div class= "row">
+  <div class="col">
+    <%= link_to "Back to employees", employees_path, class: "button-back"%>
+  </div>
+  <div class="col">
+    <%= button_to "Destroy this employee", @employee, method: :delete,  class: "button-delete"%>
+  </div>
+</div>

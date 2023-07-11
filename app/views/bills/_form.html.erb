@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<%= form_with(model: bill, class: "contents") do |form| %>
+ <% if bill.errors.any? %>
+   <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3"> 
+     <ul>
+       <% bill.errors.each do |error| %> 
+       <li class="list-group-item list-group-item-danger"><%= error.full_message %></li>
+       <% end %> 
+     </ul>
+   </div>
+  <% end %>
+  <br/>
+  <div class="container-fluid page-container bg-light">
+    <br/>
+    <div class ="container">
+    <div class="row">
+      <div class="col">
+        <%= form.label :Type, style: "display: block" %><br/>
+      </div>
+      <div class="col">
+        <%= form.label :Amount, style: "display: block" %><br/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= form.select :bill_type, options_for_select( %w(food travel others), form.object&.bill_type), 
+          {prompt: 'Select Type of Expense'}, { class: 'chosen-select form-control form-control-sm'} %>
+      </div>
+      <div class="col">
+        <%= form.number_field :amount, class:"form-control" %>
+      </div>
+    </div>
+    <br/><br/>
+    <div class="row">
+      <div class="col">
+        <%= form.label :Employee, style: "display: block" %>
+      </div>
+    </div>
+    <br/>
+    <div class ="row">
+      <div class="col">
+        <%= form.select :submitted_by, options_for_select(Employee.all.map{|e| ["#{e.first_name.capitalize} #{e.last_name.capitalize}", e.id]}, 
+          form.object&.submitted_by), {prompt: 'Select Employee'}, { class: 'chosen-select form-control form-control-sm'} %>
+      </div>
+    </div>
+    </div>
+    <br/>
+    <div class= "row">
+      <div class="col">
+        <%= form.submit class: "button-back" , style: "background-color: #2ea44f; color: #FFFFFF"%>
+        </div>
+    </div>
+  <% end %>
